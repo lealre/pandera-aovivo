@@ -13,6 +13,8 @@ graph TD;
 
 Adicionalmente, foram implementados testes unitários para as validações dos Schemas utilizando [pytest](https://docs.pytest.org/en/8.2.x/), integrados com uma rotina de CI utilizando GitHub Actions para todas as *pull requests*.
 
+O servidor do banco de dados PostgreSQL, assim como o *client* PGAdmin, foram criados localmente utilizando Docker.
+
 ## Sumário
 
 - [Contexto](#contexto)
@@ -22,6 +24,34 @@ Adicionalmente, foram implementados testes unitários para as validações dos S
 - [Instruções para executar este projeto localmente](#instruções-para-executar-este-projeto-localmente)
 
 ## Contexto
+
+O arquivo [`data/dados_financeiros.csv`](data/dados_financeiros.csv) contém o resultado operacional de uma empresa que possui três setores diferentes: vendas, manutenção e reparação. O objetivo é criar uma ETL que leia esses dados, calcule algumas métricas operacionais e carregue os dados em um banco PostgreSQL. Durante o processo, os dados devem seguir a seguinte regra de negócio:
+
+- Dados ao entrar:
+
+| Nome da Coluna            | Tipo de Dados    | Restrições                                           |
+|---------------------------|------------------|------------------------------------------------------|
+| setor_da_empresa          | string           | deve iniciar com 'VND_', 'REP_' ou 'MNT_'                                              |
+| receita_operacional       | float            | maior ou igual a 0                            |
+| data                      | DateTime         | Nenhuma                                              |
+| percentual_de_imposto     | float            | entre 0 e 1 |
+| custo_operacionais        | float            | maior ou igual a 0                            |
+
+- Dados após transformação:
+
+| Nome da Coluna            | Tipo de Dados    | Restrições                                           |
+|---------------------------|------------------|------------------------------------------------------|
+| setor_da_empresa          | string           | deve iniciar com 'VND_', 'REP_' ou 'MNT_'                                              |
+| receita_operacional       | float            | maior ou igual a 0                            |
+| data                      | DateTime         | Nenhuma                                              |
+| percentual_de_imposto     | float            | entre 0 e 1 |
+| custo_operacionais        | float            | maior ou igual a 0                            |
+| valor_do_imposto          | float            | maior ou igual a 0                            |
+| custo_total               | float            | maior ou igual a 0                            |
+| receita_liquida           | float            | maior ou igual a 0                            |
+| margem_operacional        | float            | maior ou igual a 0                            |
+| transformado_em           | DateTime (opcional) | Nenhuma                                           
+
 
 ## Pandera
 
