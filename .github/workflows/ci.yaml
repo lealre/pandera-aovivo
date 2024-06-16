@@ -10,19 +10,19 @@ jobs:
       
     steps:
 
-      - name: Download repo
+      - name: Baixa o repositório
         uses: actions/checkout@v4
 
-      - name: Download Python with different versions
+      - name: Baixa as diferentes versões do Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{matrix.python-version}}
 
-      - name: Install dependencies
+      - name: Instala as dependências
         run: pip install -r requirements.txt 
       
-      - name: Test schema in
+      - name: Testa o contrato de entrada
         run: pytest tests/test_contrato_in.py -v 
               
-      - name: Test schema out
+      - name: Testa o contrato de saída
         run: pytest tests/test_contrato_out.py -v
