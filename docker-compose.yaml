@@ -3,12 +3,12 @@ version: "3.8"
 services:
   db:
     image: postgres
-    container_name: local_pgdb
+    container_name: db
     restart: always
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: mydb
+      POSTGRES_DB: db
       POSTGRES_USER: user-name
       POSTGRES_PASSWORD: postgres
     volumes:
