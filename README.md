@@ -78,7 +78,7 @@ pip install 'pandera[polars]'      # validação de dataframes Polars
 
 #### DataFrame Models
 
-Abaixo segue o *Schema* do contrato de dados utilizado no projeto.
+Abaixo segue o *Schema* do contrato de dados utilizado no projeto na entrada dos dados.
 
 ```python
 import pandera as pa
@@ -115,6 +115,25 @@ class MetricasFinanceirasBase(pa.DataFrameModel):
 
 - Lista dos [tipos de dados](https://pandera.readthedocs.io/en/stable/reference/dtypes.html#api-dtypes) que o pandera aceita.
 
+Abaixo o modelo criado para o *Schema* do contrato de dados após sua transformação.
+```python
+class MetricasFinanceirasOut(MetricasFinanceirasBase):
+    valor_do_imposto: Series[float] = pa.Field(ge=0)
+    custo_total: Series[float] = pa.Field(ge=0)
+    receita_liquida: Series[float] = pa.Field(ge=0)
+    margem_operacional: Series[float] = pa.Field(ge=0)
+    transformado_em: Optional[pa.DateTime]
+
+    @pa.dataframe_check
+    def checa_margem_operacional(cls, df:pd.DataFrame) -> Series[bool]:
+        return df["margem_operacional"] == (df["receita_liquida"] / df["receita_operacional"]) 
+```
+
+- Sendo apenas uma extensão dos dados de entrada, a classe `MetricasFinanceirasOut` herda da classe `MetricasFinanceirasBase`.
+
+- O decorador `@pa.dataframe_check` é utilizado para criarmos checagens a nível do dataframe. Esta abordagem difere do decorador `@pa.check`, que chega a nível de colunas isoladas.
+
+
 #### Aplicando as validações de Contrato
 
 -  Com Decoradores:
@@ -129,6 +148,30 @@ MetricasFinanceirasBase.validate(df)
 ```
 
 ## Testes com Pytest
+
+O framework [pytest](https://docs.pytest.org/en/8.2.x/) facilita a escrita de testes pequenos e legíveis, e pode escalar para suportar testes funcionais complexos para aplicações e bibliotecas.
+
+A estrutura utilizada para criarmos testes unitários dos contratos de dados criados com o Pandera foi:
+```python
+def test_<NOME_DO_TESTE>():
+    df_test = pd.DataFrame(
+        {<ESTRUTURA-DO-DF>}
+    )
+
+    MetricasFinanceirasBase.validate(df_test) 
+
+    # ou
+
+    with pytest.raises(pa.errors.SchemaError):
+        MetricasFinanceirasBase.validate(df_test) # Para quebra do contrato de dados
+```
+
+Para rodar os testes:
+```bash
+pytest test/<ARQUIVO-DO-TESTE> -v
+```
+
+A *flag* `-v` serve para vermos todos os resultados dos testes no terminal.
 
 ## CI com GitHub Actions
 
