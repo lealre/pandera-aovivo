@@ -22,7 +22,7 @@ def extrai_dados(dir_arquivo: str) -> pd.DataFrame:
 def transforma_dados(df: pd.DataFrame) -> pd.DataFrame:
     df_transformado = df.copy()
     df_transformado["valor_do_imposto"] = df_transformado["percentual_de_imposto"] * df_transformado["receita_operacional"]
-    df_transformado["custo_total"] = df_transformado["valor_do_imposto"] + df_transformado["custo_operacionais"]
+    df_transformado["custo_total"] = df_transformado["valor_do_imposto"] + df_transformado["custos_operacionais"]
     df_transformado["receita_liquida"] = df_transformado["receita_operacional"] - df_transformado["custo_total"]
     df_transformado["margem_operacional"] = (df_transformado["receita_liquida"] / df_transformado["receita_operacional"]) 
     df_transformado["transformado_em"] = datetime.now()

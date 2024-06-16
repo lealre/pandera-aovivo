@@ -15,7 +15,7 @@ def test_contrato_correto():
         "receita_operacional": [1000,1000,1000],
         "data": ["2023-01-01", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [0.1, 0.1, 0.1],
-        "custo_operacionais": [200,200,200]
+        "custos_operacionais": [200,200,200]
     })
 
     MetricasFinanceirasBase.validate(df_test)
@@ -26,7 +26,7 @@ def test_coluna_adicional():
         "receita_operacional": [1000,1000,1000],
         "data": ["2023-01-01", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [0.1, 0.1, 0.1],
-        "custo_operacionais": [200,200,200],
+        "custos_operacionais": [200,200,200],
         "coluna_adicional": [0,0,0]
     })
 
@@ -38,7 +38,7 @@ def test_coluna_em_falta():
         "receita_operacional": [1000,1000,1000],
         "data": ["2023-01-01", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [0.1, 0.1, 0.1],
-        "custo_operacionais": [200,200,200],
+        "custos_operacionais": [200,200,200],
         "coluna_adicional": [0,0,0]
     })
 
@@ -51,7 +51,7 @@ def test_valor_em_falta():
         "receita_operacional": [1000,1000,1000],
         "data": ["2023-01-01", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [0.1, 0.1, 0.1],
-        "custo_operacionais": [200,200,200]
+        "custos_operacionais": [200,200,200]
     })
 
     with pytest.raises(pa.errors.SchemaError):
@@ -63,7 +63,7 @@ def test_setor_invalido():
         "receita_operacional": [1000,1000,1000],
         "data": ["2023-01-01", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [0.1, 0.1, 0.1],
-        "custo_operacionais": [200,200,200]
+        "custos_operacionais": [200,200,200]
     })
 
     with pytest.raises(pa.errors.SchemaError):
@@ -75,7 +75,7 @@ def test_receita_negativa():
         "receita_operacional": [-1000,1000,1000],
         "data": ["2023-01-01", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [0.1, 0.1, 0.1],
-        "custo_operacionais": [200,200,200]
+        "custos_operacionais": [200,200,200]
     })
 
     with pytest.raises(pa.errors.SchemaError):
@@ -87,7 +87,7 @@ def test_data_invalida():
         "receita_operacional": [1000,1000,1000],
         "data": ["data invalida", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [0.1, 0.1, 0.1],
-        "custo_operacionais": [200,200,200]
+        "custos_operacionais": [200,200,200]
     })
 
     with pytest.raises(pa.errors.SchemaError):
@@ -99,7 +99,7 @@ def test_porcentagem_imposto():
         "receita_operacional": [1000,1000,1000],
         "data": ["2023-01-01", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [1.1, 0.1, 0.1],
-        "custo_operacionais": [200,200,200]
+        "custos_operacionais": [200,200,200]
     })
 
     with pytest.raises(pa.errors.SchemaError):
@@ -111,7 +111,7 @@ def test_custos_negativos():
         "receita_operacional": [1000,1000,1000],
         "data": ["2023-01-01", "2023-01-01", "2023-01-01"],
         "percentual_de_imposto": [0.1, 0.1, 0.1],
-        "custo_operacionais": [-200,200,200]
+        "custos_operacionais": [-200,200,200]
     })
 
     with pytest.raises(pa.errors.SchemaError):

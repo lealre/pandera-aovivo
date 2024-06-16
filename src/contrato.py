@@ -8,7 +8,7 @@ class MetricasFinanceirasBase(pa.DataFrameModel):
     receita_operacional: Series[float] = pa.Field(ge=0)
     data: Series[pa.DateTime] 
     percentual_de_imposto: Series[float] = pa.Field(in_range= {"min_value": 0, "max_value": 1})
-    custo_operacionais: Series[float] = pa.Field(ge=0)
+    custos_operacionais: Series[float] = pa.Field(ge=0)
 
     class Config:
         strict = True

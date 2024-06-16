@@ -1,4 +1,4 @@
-setor_da_empresa,receita_operacional,data,percentual_de_imposto,custo_operacionais
+setor_da_empresa,receita_operacional,data,percentual_de_imposto,custos_operacionais
 VND_A1B2C3,3000.0,2023-01-01,0.10,150.0
 REP_X7Y8Z9,3500.0,2023-01-05,0.10,175.0
 MNT_4D5E6F,4000.0,2023-01-10,0.10,200.0
