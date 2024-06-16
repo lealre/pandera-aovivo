@@ -57,6 +57,25 @@ O arquivo [`data/dados_financeiros.csv`](data/dados_financeiros.csv) contém o r
 
 > *"Data validation for scientists, engineers, and analysts seeking correctness."*
 
+[Pandera](https://pandera.readthedocs.io/en/stable/index.html) é um projeto open source da Union.ai que oferece uma API flexível e expressiva para realizar validação de dados em objetos semelhantes a dataframes, tornando os pipelines de processamento de dados mais legíveis e robustos.
+
+Integrações:
+
+```bash
+pip install 'pandera[hypotheses]'  # verificações de hipóteses
+pip install 'pandera[io]'          # utilitários de IO para esquemas yaml/script
+pip install 'pandera[strategies]'  # estratégias de síntese de dados
+pip install 'pandera[mypy]'        # habilita a verificação estática de tipos do pandas
+pip install 'pandera[fastapi]'     # integração com FastAPI
+pip install 'pandera[dask]'        # validação de dataframes Dask
+pip install 'pandera[pyspark]'     # validação de dataframes PySpark
+pip install 'pandera[modin]'       # validação de dataframes Modin
+pip install 'pandera[modin-ray]'   # validação de dataframes Modin com Ray
+pip install 'pandera[modin-dask]'  # validação de dataframes Modin com Dask
+pip install 'pandera[geopandas]'   # validação de geodataframes GeoPandas
+pip install 'pandera[polars]'      # validação de dataframes Polars
+```
+
 #### DataFrame Models
 
 Abaixo segue o *Schema* do contrato de dados utilizado no projeto.
