@@ -201,3 +201,63 @@ Para ativar o *merge* de novas *pull requests* apenas se passar nos testes, siga
 
 ## Instruções para executar este projeto localmente
 
+Os passos abaixo foram executados para um terminal do tipo `bash`.
+
+1. Clone o repositório localmente:
+```bash
+git clone https://github.com/lealre/pandera-aovivo.git
+```
+
+2. Acesse a pasta:
+```bash
+cd pandera-aovivo
+```
+
+3. Crie um ambiente virtual:
+```bash
+python -m venv .venv
+```
+
+4. Ative o ambiente virtual:
+```bash
+source .venv/bin/activate
+```
+
+5. Baixe as dependências:
+```bash
+pip install -r requirements.txt
+```
+
+6. Crie o banco de dados com o Docker:
+```bash
+docker compose up -d
+```
+
+Para acessar o banco de dados:
+
+7. Entre no link do localhostem seu navegador: `http://localhost:8888/`
+
+8. Acesse o PGAdmin com as credencias estipuladas no arquivo `docker-compose.yaml`:
+
+`Username`: `user-name@domain-name.com`
+`Password`: `pgadmin`
+
+9. Defina a senha mestra (ao acessar pela primeira vez).
+
+<img src="pics/d1.png" alt="Description" width="800" >
+
+10. Clique com o botão direito no servidor para conectar o pgAdmin ao banco de dados.
+
+<img src="pics/d2.png" alt="Description" width="800" >
+
+11. Defina o nome do servidor (pode ser qualquer nome que você queira).
+
+<img src="pics/d3.png" alt="Description" width="800" >
+
+12. Conecte-se ao banco de dados usando as credenciais definidas no arquivo [`docker-compose.yaml`](docker-compose.yaml).
+
+   - **Nome do host**: `db`
+   - **Senha**: `postgres`
+
+<img src="pics/d4.png" alt="Description" width="800" >
+
