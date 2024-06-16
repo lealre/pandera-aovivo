@@ -115,8 +115,6 @@ class MetricasFinanceirasBase(pa.DataFrameModel):
 
 - Lista dos [tipos de dados](https://pandera.readthedocs.io/en/stable/reference/dtypes.html#api-dtypes) que o pandera aceita.
 
-
-
 #### Aplicando as validações de Contrato
 
 -  Com Decoradores:
@@ -133,6 +131,30 @@ MetricasFinanceirasBase.validate(df)
 ## Testes com Pytest
 
 ## CI com GitHub Actions
+
+Para criar uma rotina de Integração Contínua (CI) utilizando GitHub Actions, você deve criar um arquivo `ci.yaml` dentro da pasta `.github/workflows`.
+
+Para ativar o *merge* de novas *pull requests* apenas se passar nos testes, siga os passos abaixo:
+
+1. Vá para **Configurações**.
+2. Selecione **Branches** no menu lateral esquerdo.
+3. Clique em **Adicionar regra de proteção de branch**.
+
+
+<img src="pics/1.png" alt="Description" width="800" >
+
+4. Escolha o nome da regra (qualquer um que você desejar).
+
+<img src="pics/2.png" alt="Description" width="800" >
+
+5. Marque a caixa para **Exigir que verificações de status sejam aprovadas**.
+6. Marque a caixa para **Exigir que os branches estejam atualizados antes da fusão**.
+7. Clique em **Adicionar verificações**.
+8. Escolha o nome da verificação.
+9. Salve as alterações.
+
+
+<img src="pics/3.png" alt="Description" width="800" >
 
 ## Instruções para executar este projeto localmente
 
